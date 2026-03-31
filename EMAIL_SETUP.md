@@ -19,6 +19,24 @@ The contact form sends mail through **Gmail SMTP** using `nodemailer`.
    - Open `.env.local` file
    - Set `EMAIL_USER` to the Gmail address
    - Set `EMAIL_PASS` to the Gmail app password
+   - Optional: set `EMAIL_TO` if owner notifications should go to a different inbox
+
+## Vercel Deployment
+
+`.env.local` works only on your local machine. When you deploy to Vercel, those values are **not** copied automatically.
+
+Add these variables in **Vercel Dashboard -> Project -> Settings -> Environment Variables**:
+
+- `EMAIL_USER` = your Gmail address
+- `EMAIL_PASS` = your Gmail app password
+- Optional: `EMAIL_TO` = inbox that should receive owner notifications
+
+The API also accepts these aliases if you already used different names in Vercel:
+
+- `SMTP_USER` or `GMAIL_USER`
+- `SMTP_PASS` or `GMAIL_APP_PASSWORD`
+
+After adding the variables, redeploy the project so the new deployment picks them up.
 
 ## How it works
 

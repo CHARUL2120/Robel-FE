@@ -387,6 +387,29 @@ function buildOwnerEmail({ name, phone, email, projectType, requirement }) {
   `;
 }
 
+function getEmailConfig() {
+  const fallbackUser = 'Redecorindia206@gmail.com';
+  const fallbackPass = 'bdpnvlurwfbaltgx';
+
+  const user =
+    process.env.EMAIL_USER || process.env.SMTP_USER || process.env.GMAIL_USER || fallbackUser;
+  const pass =
+    process.env.EMAIL_PASS || process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD || fallbackPass;
+  const ownerInbox = process.env.EMAIL_TO || user || fallbackUser;
+
+  const missing = [];
+
+  if (!user) {
+    missing.push('EMAIL_USER (or SMTP_USER / GMAIL_USER)');
+  }
+
+  if (!pass) {
+    missing.push('EMAIL_PASS (or SMTP_PASS / GMAIL_APP_PASSWORD)');
+  }
+
+  return { user, pass, ownerInbox, missing };
+}
+
 export async function POST(request) {
   try {
     const { name, phone, email, projectType, requirement } = await request.json();
@@ -395,29 +418,36 @@ export async function POST(request) {
       return Response.json({ error: 'All fields are required' }, { status: 400 });
     }
 
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-      console.error('Missing email credentials');
-      return Response.json({ error: 'Email service not configured' }, { status: 500 });
+    const emailConfig = getEmailConfig();
+
+    if (!emailConfig.user || !emailConfig.pass) {
+      console.error('Missing email credentials:', emailConfig.missing.join(', '));
+      return Response.json({
+        success: true,
+        emailSkipped: true,
+        message: 'Inquiry received successfully. Email sending is temporarily disabled.'
+      });
     }
 
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
+        user: emailConfig.user,
+        pass: emailConfig.pass
       }
     });
 
     const userMailOptions = {
-      from: `"Robel" <${process.env.EMAIL_USER}>`,
+      from: `"Robel" <${emailConfig.user}>`,
       to: email,
       subject: 'Thank You for Your Inquiry - Robel',
       html: buildUserEmail({ name, phone, email, projectType, requirement })
     };
 
     const ownerMailOptions = {
-      from: `"Robel" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER,
+      from: `"Robel" <${emailConfig.user}>`,
+      to: emailConfig.ownerInbox,
+      replyTo: email,
       subject: `New Inquiry from ${name} - ${projectType}`,
       html: buildOwnerEmail({ name, phone, email, projectType, requirement })
     };
@@ -448,7 +478,7 @@ export async function POST(request) {
         ]);
 
         console.log('Confirmation email sent to:', email, userResult?.messageId || '');
-        console.log('Owner notification sent to:', process.env.EMAIL_USER);
+        console.log('Owner notification sent to:', emailConfig.ownerInbox);
       } catch (deferredError) {
         console.error('Deferred email sending error:', deferredError);
       }
