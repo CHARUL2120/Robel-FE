@@ -4,57 +4,24 @@
 
 @custom-variant dark (&:is(.dark *));
 html {
-  font-family: 'Darker Grotesque', sans-serif;
+  font-family: var(--font-inter), sans-serif;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
-@font-face {
-  font-family: 'Nocturne W00 Book';
-  src: url('https://db.onlinewebfonts.com/t/891dd8c170ad0ce51b71ebe739c86c33.eot');
-  src: url('https://db.onlinewebfonts.com/t/891dd8c170ad0ce51b71ebe739c86c33.eot?#iefix')
-      format('embedded-opentype'),
-    url('https://db.onlinewebfonts.com/t/891dd8c170ad0ce51b71ebe739c86c33.woff2')
-      format('woff2'),
-    url('https://db.onlinewebfonts.com/t/891dd8c170ad0ce51b71ebe739c86c33.woff')
-      format('woff'),
-    url('https://db.onlinewebfonts.com/t/891dd8c170ad0ce51b71ebe739c86c33.ttf')
-      format('truetype'),
-    url('https://db.onlinewebfonts.com/t/891dd8c170ad0ce51b71ebe739c86c33.svg#Nocturne W00 Book')
-      format('svg');
+.font-body {
+  font-family: var(--font-inter), sans-serif;
 }
 
-@font-face {
-  font-family: 'Eulogy';
-  src: url('/fonts/EulogyDemo-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+.font-heading {
+  font-family: var(--font-poppins), sans-serif;
 }
 
-.font-eulogy {
-  font-family: 'Eulogy', sans-serif;
-}
-
-.font-nocturne {
-  font-family: 'Nocturne W00 Book';
-}
-.font-urbanist {
-  font-family: 'Urbanist', sans-serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-}
-
-/*.font-micaroline {
-  font-family: var(--font-micaroline), sans-serif;
-}*/
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-urbanist: var(--font-urbanist);
-  --font-sans: var(--font-darker-grotesque);
-  --font-mono: var(--font-dm-sans);
-  --font-micaroline: var(--font-micaroline);
-  --font-Eulogy: var(--font-Eulogy);
-  --font-nocturne: var(--font-nocturne);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-inter);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -92,19 +59,19 @@ html {
 }
 
 :root {
-  --background: #fff;
-  --foreground: oklch(0.145 0 0);
+  --background: #f7f2ec;
+  --foreground: #1d1814;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: #c5705d;
-  --primary-foreground: #121212;
-  --secondary: #d0b8a8;
+  --primary: #2d231c;
+  --primary-foreground: #ffffff;
+  --secondary: #eadfce;
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
-  --accent: #283845;
+  --accent: #8b6a4a;
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.577 0.245 27.325);
@@ -166,51 +133,53 @@ html {
   * {
     @apply border-border outline-ring/50;
   }
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  html,
   body {
-    @apply bg-background text-foreground;
+    min-height: 100%;
   }
-}
-
-.shiny-text {
-  color: #b5b5b5a4; /* Adjust this color to change intensity/style */
-  background: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0) 40%,
-    rgba(255, 255, 255, 0.8) 50%,
-    rgba(255, 255, 255, 0) 60%
-  );
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  display: inline-block;
-  animation: shine 5s linear infinite;
-}
-
-@keyframes shine {
-  0% {
-    background-position: 100%;
+  body {
+    @apply bg-background text-foreground overflow-x-hidden;
+    min-height: 100vh;
+    min-height: 100svh;
+    background-image:
+      radial-gradient(circle at top left, rgba(255, 255, 255, 0.9), transparent 36%),
+      linear-gradient(180deg, #fbf7f2 0%, #f5eee6 52%, #f6f1ea 100%);
   }
-  100% {
-    background-position: -100%;
+  main {
+    display: block;
   }
-}
-
-.shiny-text.disabled {
-  animation: none;
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+  input,
+  textarea,
+  select,
+  button {
+    font: inherit;
+  }
 }
 
 @layer utilities {
-  @keyframes shine {
-    0% {
-      background-position: 100%;
-    }
-    100% {
-      background-position: -100%;
-    }
+  .glass-panel {
+    @apply border border-white/50 bg-white/65 backdrop-blur-xl;
+    box-shadow: 0 24px 70px -38px rgba(34, 24, 17, 0.35);
   }
 
-  .animate-shine {
-    animation: shine 5s linear infinite;
+  .page-shell {
+    @apply container mx-auto px-4 pt-24 pb-10 sm:px-6 sm:pt-28 lg:px-8 lg:pt-32;
+  }
+
+  .section-shell {
+    @apply py-14 sm:py-16 lg:py-24;
   }
 }
 
@@ -220,4 +189,18 @@ html {
 .no-scrollbar {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
