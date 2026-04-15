@@ -17,6 +17,7 @@ import { cn } from '../../../lib/utils';
 
 const navLinks = [
   { href: '/', label: 'Home' },
+  { href: '/studio', label: '3D Studio' },
   { href: '/laminates', label: 'PVC Laminates' },
   { href: '/asa-laminates', label: 'ASA Laminates' },
   { href: '/acrylic-sheets', label: 'Acrylic Sheets' },

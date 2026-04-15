@@ -191,6 +191,72 @@ html {
   scrollbar-width: none; /* Firefox */
 }
 
+.studio-range {
+  appearance: none;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(214, 177, 141, 0.85), rgba(255, 255, 255, 0.36));
+}
+
+.studio-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 999px;
+  background: #fff7ef;
+  border: 1px solid rgba(128, 93, 64, 0.45);
+  box-shadow: 0 6px 18px rgba(25, 16, 12, 0.25);
+}
+
+.studio-range::-moz-range-thumb {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 999px;
+  background: #fff7ef;
+  border: 1px solid rgba(128, 93, 64, 0.45);
+  box-shadow: 0 6px 18px rgba(25, 16, 12, 0.25);
+}
+
+body:has([data-studio-app='true']) {
+  background: #05070d;
+  overflow: hidden;
+}
+
+body:has([data-studio-app='true']) > header,
+body:has([data-studio-app='true']) > footer,
+body:has([data-studio-app='true']) > section {
+  display: none;
+}
+
+body:has([data-studio-app='true']) main {
+  min-height: 100svh;
+  overflow: hidden;
+}
+
+.studio-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(216, 166, 118, 0.55) rgba(255, 255, 255, 0.06);
+}
+
+.studio-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.studio-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+}
+
+.studio-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(216, 166, 118, 0.55);
+  border-radius: 999px;
+}
+
+.studio-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(216, 166, 118, 0.78);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

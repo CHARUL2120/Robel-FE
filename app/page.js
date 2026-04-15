@@ -54,8 +54,8 @@ const Home = () => {
 
             <div className="flex flex-col gap-3 sm:flex-row">
               <Button asChild className="h-12 px-6 text-sm sm:text-base">
-                <Link href="/laminates">
-                  Explore PVC Laminates
+                <Link href="/studio">
+                  Launch 3D Studio
                   <ArrowRight />
                 </Link>
               </Button>
@@ -64,7 +64,7 @@ const Home = () => {
                 variant="outline"
                 className="h-12 border-white/20 bg-white/10 px-6 text-sm text-white hover:bg-white/18 sm:text-base"
               >
-                <Link href="/acrylic-sheets">View Acrylic Sheets</Link>
+                <Link href="/laminates">Explore PVC Laminates</Link>
               </Button>
             </div>
 
@@ -105,6 +105,55 @@ const Home = () => {
               className="sm:translate-y-10"
             />
           </motion.div>
+        </div>
+      </section>
+
+      <section className="container mx-auto px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <div className="grid gap-6 overflow-hidden rounded-[34px] border border-white/60 bg-[linear-gradient(135deg,#231b17_0%,#3d2a1e_56%,#8e5d39_100%)] px-6 py-8 text-white shadow-[0_28px_100px_-48px_rgba(28,20,14,0.72)] sm:px-8 lg:grid-cols-[0.95fr_1.05fr] lg:px-10 lg:py-10">
+          <div className="space-y-4">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-white/60">
+              New experience
+            </p>
+            <h2 className="font-heading text-3xl font-semibold tracking-[-0.05em] sm:text-4xl">
+              Configure wardrobes, kitchens, TV units, and bedroom furniture in a premium 3D studio
+            </h2>
+            <p className="max-w-xl text-sm leading-7 text-white/74 sm:text-base">
+              Click individual doors, panels, and drawers to apply laminates and acrylic finishes in real time, adjust lighting, save concepts, share links, and request quotes directly from the visualization workflow.
+            </p>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Button asChild className="h-12 bg-white text-[#221914] hover:bg-white/92">
+                <Link href="/studio">
+                  Open 3D Studio
+                  <ArrowRight />
+                </Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                className="h-12 border-white/18 bg-white/10 text-white hover:bg-white/16"
+              >
+                <Link href="/studio/admin">View admin panel</Link>
+              </Button>
+            </div>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+            {[
+              ['Interactive parts', 'Doors, drawers, panels, and feature walls respond instantly.'],
+              ['Lighting controls', 'Orbit, zoom, and relight to evaluate finishes in different moods.'],
+              ['Save and share', 'Store concepts locally and send quote-ready design summaries.']
+            ].map(([title, detail]) => (
+              <div
+                key={title}
+                className="rounded-[26px] border border-white/12 bg-white/10 p-5 backdrop-blur-xl"
+              >
+                <h3 className="font-heading text-2xl font-semibold tracking-[-0.04em] text-white">
+                  {title}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-white/72">{detail}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
