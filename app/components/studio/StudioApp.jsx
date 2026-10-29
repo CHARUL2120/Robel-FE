@@ -11,6 +11,7 @@ import {
   ImageDown,
   Link2,
   MessageCircle,
+  RotateCcw,
 } from 'lucide-react';
 import { Button } from '../ui/button';
 import {
@@ -465,6 +466,18 @@ export default function StudioApp() {
             </span>
           </div>
 
+          <div className="flex items-center gap-2">
+            <Button
+              variant="outline"
+              className="h-10 border-white/15 bg-[#0f131d]/72 px-3 text-white hover:bg-white/10 sm:px-4"
+              aria-label="Reset 3D studio view"
+              onClick={() => canvasRef.current?.resetView?.()}
+            >
+              <RotateCcw className="size-4" aria-hidden="true" />
+              <span className="hidden sm:inline">Reset view</span>
+            </Button>
+          </div>
+
           <div className="hidden items-center gap-3 xl:flex">
             <Button className="h-11" onClick={handleSaveImage}>
               <Download className="size-4" />
@@ -498,6 +511,9 @@ export default function StudioApp() {
                 </button>
               ))}
             </div>
+          </div>
+          <div className="pointer-events-none absolute left-1/2 top-[112px] -translate-x-1/2 rounded-full border border-white/10 bg-[#0f131d]/55 px-3 py-1.5 text-center text-[10px] text-white/65 backdrop-blur sm:top-[122px] sm:text-xs">
+            Drag to rotate 360° · Scroll or pinch to zoom
           </div>
         </div>
 

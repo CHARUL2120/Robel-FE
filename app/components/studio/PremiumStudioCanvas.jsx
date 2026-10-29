@@ -252,12 +252,14 @@ function StudioScene({
   materials,
   assignments,
   selectedPartId,
-  onSelectPart
+  onSelectPart,
+  controlsRef
 }) {
   return (
     <>
       <StudioBackdrop />
       <OrbitControls
+        ref={controlsRef}
         enablePan={false}
         enableDamping
         dampingFactor={0.08}
@@ -311,10 +313,14 @@ const PremiumStudioCanvas = forwardRef(function PremiumStudioCanvas(
   ref
 ) {
   const rendererRef = useRef(null);
+  const controlsRef = useRef(null);
 
   useImperativeHandle(
     ref,
     () => ({
+      resetView() {
+        controlsRef.current?.reset();
+      },
       async captureImage() {
         if (!rendererRef.current) {
           return null;
@@ -344,6 +350,7 @@ const PremiumStudioCanvas = forwardRef(function PremiumStudioCanvas(
         assignments={assignments}
         selectedPartId={selectedPartId}
         onSelectPart={onSelectPart}
+        controlsRef={controlsRef}
       />
     </Canvas>
   );

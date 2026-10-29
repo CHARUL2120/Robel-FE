@@ -3,7 +3,6 @@ import './globals.css';
 import Header from './components/header/page';
 import Footer from './components/Footer/Footer';
 import SmoothScroll from './components/Scroll/SmoothScroll';
-import FounderShowcase from './components/site/FounderShowcase';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -31,7 +30,6 @@ export default function RootLayout({ children }) {
         <SmoothScroll />
         <Header />
         <main className="min-h-[100svh]">{children}</main>
-        <FounderShowcase />
         <Footer />
       </body>
     </html>

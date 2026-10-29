@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowUpRight, Instagram, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
+import { ArrowUpRight, Facebook, Instagram, Mail, MapPin, Phone } from 'lucide-react';
 import { categories } from '../../data/catalog';
 import BrandLogo from '../site/BrandLogo';
 
@@ -71,22 +71,38 @@ const Footer = () => {
                 <span>Robel House, Sarkhej, Ahmedabad, Gujarat</span>
               </div>
             </div>
-            <Link
-              href="https://www.instagram.com/robel_india?igsh=MW1zcGZzODJsYmljdQ=="
-              target="_blank"
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-4 py-2 text-sm text-white/80 transition hover:bg-white/10 hover:text-white"
-            >
-              <Instagram className="size-4" />
-              Follow on Instagram
-            </Link>
-            <Link
-              href="https://wa.me/919427908150?text=Hello%20Robel%20Laminates,%20%0A%0AI%E2%80%99m%20interested%20in%20your%20laminate%20/%20acrylic%20sheet%20products.%20%0A%0APlease%20share%20details,%20catalog,%20and%20pricing."
-              target="_blank"
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-4 py-2 text-sm text-white/80 transition hover:bg-white/10 hover:text-white"
-            >
-              <MessageCircle className="size-4" />
-              Chat on WhatsApp
-            </Link>
+            <div className="flex flex-wrap gap-2">
+              <Link
+                href="https://facebook.com/robel.india.2025"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Robel India on Facebook (opens in a new tab)"
+                className="inline-flex min-h-10 items-center gap-2 rounded-full border border-white/10 bg-white/6 px-4 py-2 text-sm text-white/80 transition hover:bg-white/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              >
+                <Facebook className="size-4" aria-hidden="true" />
+                Facebook
+              </Link>
+              <Link
+                href="https://www.instagram.com/robel_india?igsh=MW1zcGZzODJsYmljdQ=="
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Robel India on Instagram (opens in a new tab)"
+                className="inline-flex min-h-10 items-center gap-2 rounded-full border border-white/10 bg-white/6 px-4 py-2 text-sm text-white/80 transition hover:bg-white/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              >
+                <Instagram className="size-4" aria-hidden="true" />
+                Instagram
+              </Link>
+              <Link
+                href="https://wa.me/919427908150?text=Hello%20Robel%20Laminates,%20%0A%0AI%E2%80%99m%20interested%20in%20your%20laminate%20/%20acrylic%20sheet%20products.%20%0A%0APlease%20share%20details,%20catalog,%20and%20pricing."
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Chat with Robel India on WhatsApp (opens in a new tab)"
+                className="inline-flex min-h-10 items-center gap-2 rounded-full border border-white/10 bg-white/6 px-4 py-2 text-sm text-white/80 transition hover:bg-white/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              >
+                <WhatsAppIcon className="size-4" />
+                WhatsApp
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -97,5 +113,23 @@ const Footer = () => {
     </footer>
   );
 };
+
+function WhatsAppIcon({ className }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M20.3 11.8a8.3 8.3 0 0 1-12.2 7.3L3 20.3l1.3-4.9a8.3 8.3 0 1 1 16-3.6Z" />
+      <path d="M8.2 8.1c.2-.5.4-.5.7-.5h.5c.2 0 .4 0 .5.4l.7 1.6c.1.3.1.4-.1.6l-.5.6c-.2.2-.2.4 0 .6.6 1 1.5 1.8 2.5 2.3.3.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.5.7c.3.1.4.3.3.6-.1.5-.4 1.1-.9 1.4-.4.3-1 .5-1.6.3-1-.2-2.2-.7-3.5-1.9-1-.9-1.7-2-2-3.1-.2-.7 0-1.3.3-1.8Z" />
+    </svg>
+  );
+}
 
 export default Footer;
